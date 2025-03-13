@@ -1,6 +1,8 @@
 
-# RAG Based Chat-bot using Langchain and MongoDB Atlas
-This starter template implements a Retrieval-Augmented Generation (RAG) chatbot using LangChain and MongoDB Atlas. RAG combines AI language generation with knowledge retrieval for more informative responses. LangChain simplifies building the chatbot logic, while MongoDB Atlas' Vector database capability provides a powerful platform for storing and searching the knowledge base that fuels the chatbot's responses.
+# Dunder RAG
+This project is a chat application using RAG architecture, using Langchain, Mongodb Vector Search and next.js for the interface.
+
+<img src="/cover.png" />
 
 ## Setup 
 ### Prerequisites
@@ -9,17 +11,19 @@ Before you begin, make sure you have the following ready:
 
 - **MongoDB Atlas URI**: Setup your account if you don't already have one ([Create Account](https://www.mongodb.com/docs/guides/atlas/account/))
     
-- **OpenAI API Key** (https://platform.openai.com/api-keys)
+- **OpenAI API Key** (https://platform.openai.com/api-keys) 
+
+- Make sure you have credits in your OpenAI account
 
 
+## Getting started
+### Step 0: Using the correct node.js version and install dependencies
+````
+nvm use
+npm install
+````
 
-## Steps to Deploy 
-Follow the below-mentioned steps to deploy the app on Vercel.
-
-#### Step 1: Click below to navigate to the deployment page
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmongodb-partners%2FMongoDB-RAG-Vercel&env=OPENAI_API_KEY&demo-title=RAG%20with%20MongoDB%20Atlas%20and%20OpenAI&demo-url=https%3A%2F%2Fmonogodb-rag.vercel.app%2F&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)
-
-#### Step 2: Add Environment Variables
+#### Step 1: Add Environment Variables
 
 Populate the values of the ENV variables mentioned below
 
@@ -28,14 +32,21 @@ OPENAI_API_KEY = "<YOUR_OPENAI_KEY>"              # API Key copied from the Open
 MONGODB_URI = "<YOUR_MONGODB_URI>"                # Connection URI to MongoDB Instance (This should be automatically created after MongoDB Atlas integration)
 ````
 
-#### Step 3: Deploy
-Once you have updated the above values, go ahead and click deploy to deploy the app. Wait for the app to be deployed and start serving traffic.
+### Step 2: Run the application
+````
+npm run dev
+````
 
+or
 
-#### Step 4: Upload PDF files to create chunks
+````
+yarn dev
+````
+
+#### Step 3: Upload PDF files to create chunks
 Head to the `Train` tab and upload a PDF document. 
 
-If everything is deployed correctly, your document should start uploading to your cluster under the `chatter > training_data` collection.
+If everything is running correctly, your document should start uploading to your cluster under the `dundler_rag_db > training_data` collection.
 
 Your data should now start appearing as below in the collection.
 
@@ -43,8 +54,8 @@ Your data should now start appearing as below in the collection.
 
 
 
-#### Step 5: Create Vector Index on Atlas
-Now for the RAG (QnA) to work, you need to create a Vector Search Index on Atlas so the vector data can be fetched and served to LLMs.
+#### Step 4: Create Vector Index on Atlas (IMPORTANT!)
+Now for the RAG (Chat) to work, you need to create a Vector Search Index on Atlas so the vector data can be fetched and served to LLMs.
 
 Create a search index as below.
 
@@ -69,7 +80,7 @@ Create a search index as below.
 - You should start seeing a vector index getting created. You should get an email once index creation is completed.
   ![image](https://github.com/utsavMongoDB/MongoDB-RAG-NextJS/assets/114057324/c1842069-4080-4251-8269-08d9398e09aa)
 
-- Once completed, head to the QnA section to start asking questions based on your trained data, and you should get the desired response.
+- Once completed, head to the `chat` section to start asking questions based on your trained data, and you should get the desired response.
 
   ![image](https://github.com/utsavMongoDB/MongoDB-RAG-NextJS/assets/114057324/c76c8c19-e18a-46b1-834a-9a6bda7fec99)
 
