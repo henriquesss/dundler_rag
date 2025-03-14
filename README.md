@@ -2,7 +2,7 @@
 # Dunder RAG
 This project is a chat application using RAG architecture, using Langchain, Mongodb Vector Search and next.js for the interface.
 
-<img src="cover.png" />
+<img src="./cover.png" />
 
 ## Setup 
 ### Prerequisites
